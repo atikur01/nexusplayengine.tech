@@ -40,39 +40,31 @@ const legalPages = {
     heading: "Contact Us",
     subheading: "Have questions or suggestions? We would love to hear from you.",
     content: `
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-        <div class="space-y-6 text-slate-300">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-slate-300">
+        <div class="space-y-6">
           <p class="text-lg leading-relaxed">
-            We are constantly looking to improve our calculators and add new features. If you have noticed an discrepancy, have ideas for a new tool, or want to explore partnership opportunities, reach out to us.
+            We are constantly looking to improve our calculators and add new features. If you have noticed a discrepancy, have ideas for a new tool, or want to explore partnership opportunities, reach out to us.
           </p>
-          <div class="space-y-4">
-            <div class="flex items-center space-x-4">
-              <div class="p-3 bg-slate-800 rounded-lg text-emerald-400">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-              </div>
-              <div>
-                <h4 class="text-sm font-semibold text-white">General Inquiries</h4>
-                <p class="text-sm text-slate-400">info@nexusplayengine.tech</p>
-              </div>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            Our editorial and development teams monitor inquiries daily. We aim to respond to all valid messages within 24 to 48 business hours.
+          </p>
+        </div>
+        <div class="space-y-4">
+          <div class="flex items-center space-x-4 p-5 bg-gradient-to-br from-slate-800 to-slate-900/80 rounded-xl border border-slate-700/60 shadow-lg hover:border-emerald-500/30 transition-all duration-300">
+            <div class="p-3 bg-slate-900 rounded-lg text-emerald-400 border border-slate-700/80 shadow-inner">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+            </div>
+            <div>
+              <h4 class="text-sm font-bold text-white uppercase tracking-wider">General Inquiries</h4>
+              <p class="text-sm text-emerald-400 font-medium mt-0.5">info@nexusplayengine.tech</p>
             </div>
           </div>
-        </div>
-        <div class="p-8 bg-slate-800 rounded-xl border border-slate-700">
-          <form onsubmit="event.preventDefault(); alert('Message sent successfully!');" class="space-y-4">
-            <div>
-              <label class="block text-sm font-semibold text-white mb-2" for="name">Your Name</label>
-              <input type="text" id="name" required class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-emerald-500 transition-colors">
-            </div>
-            <div>
-              <label class="block text-sm font-semibold text-white mb-2" for="email">Your Email</label>
-              <input type="email" id="email" required class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-emerald-500 transition-colors">
-            </div>
-            <div>
-              <label class="block text-sm font-semibold text-white mb-2" for="message">Message</label>
-              <textarea id="message" rows="4" required class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-emerald-500 transition-colors"></textarea>
-            </div>
-            <button type="submit" class="w-full py-3 bg-emerald-500 hover:bg-emerald-600 text-slate-900 font-bold rounded-lg transition-colors">Send Message</button>
-          </form>
+          <div class="p-5 bg-slate-800/40 rounded-xl border border-slate-800/80 space-y-2">
+            <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Response Scope</h4>
+            <p class="text-xs text-slate-500 leading-relaxed">
+              We prioritize inquiries related to calculator equation corrections, licensing inquiries, and partnership proposals.
+            </p>
+          </div>
         </div>
       </div>
     `
