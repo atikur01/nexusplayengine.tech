@@ -432,12 +432,6 @@ function generateHomepage() {
       </div>
     </section>
 
-    <!--
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-      <div class="adsense-placeholder">Advertisement Space (Header Block)</div>
-    </div>
-    -->
-
     <section id="categories" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
       <div class="text-center mb-12">
         <h2 class="text-2xl sm:text-3xl font-bold text-white">Calculator Categories</h2>
@@ -459,10 +453,6 @@ function generateHomepage() {
         </div>
       </div>
     </section>
-
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-      <div class="adsense-placeholder">Advertisement Space (In-Feed Block)</div>
-    </div>
 
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
       <div class="text-center mb-12">
@@ -664,10 +654,6 @@ function generateCalculatorPages() {
           </div>
         </div>
 
-        <div class="py-4">
-          <div class="adsense-placeholder">Advertisement Space (In-Article Block)</div>
-        </div>
-
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mt-12">
           <div class="lg:col-span-8 space-y-12">
             <div class="p-6 bg-slate-800/40 border border-slate-700/40 rounded-xl">
@@ -702,7 +688,7 @@ function generateCalculatorPages() {
               </div>
             </div>
             
-            <div class="adsense-placeholder">Ad Space</div>
+
           </div>
         </div>
       </section>
@@ -783,10 +769,6 @@ function generateBlogPages() {
         <p class="text-sm text-slate-400 mt-3 max-w-xl mx-auto">Master budgeting, analyze compounding interest formulas, plan tax deductions, and track investment returns.</p>
       </div>
     </section>
-
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-      <div class="adsense-placeholder">Advertisement Space</div>
-    </div>
 
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -883,10 +865,6 @@ function generateBlogPages() {
               <p>When analyzing personal finance, developing a strong core understanding is paramount. Without this conceptual framework, retail investors and borrowers struggle to evaluate interest rates and compound yield ratios, exposing their assets to inflation depletion. In addition, recognizing how different financial assets interact creates a protective buffer against economic downturns and keeps budgets on track.</p>
               <p>Moreover, modern tax laws and debt servicing rules necessitate an active, data-driven approach. By translating vague financial theories into actionable metrics, individuals can identify cash flow leakages, optimize monthly loan payments, and accelerate their transition to passive wealth accumulation. It is this systematic process that underpins the calculators and guides featured on our static platform.</p>
 
-              <div class="py-4">
-                <div class="adsense-placeholder">Ad Space (In-Article Block)</div>
-              </div>
-
               <h2 id="mathematics" class="text-xl sm:text-2xl font-bold text-white border-b border-slate-700/50 pb-2 mt-8">2. Mathematical Calculation & Formulas</h2>
               <p>${a.math}</p>
               <p>Applying structured math is the only way to eliminate uncertainty from financial decisions. Standard financial formulas account for the time value of money, principal amortization scales, progressive taxation tiers, and compounding timelines. For example, compounding interest over multiple years exhibits an exponential growth slope, demonstrating why early and consistent contributions outperform delayed deposits.</p>
@@ -913,10 +891,6 @@ function generateBlogPages() {
                     ${tableBody}
                   </tbody>
                 </table>
-              </div>
-
-              <div class="py-4">
-                <div class="adsense-placeholder">Ad Space (In-Article Block)</div>
               </div>
 
               <h2 id="pitfalls" class="text-xl sm:text-2xl font-bold text-white border-b border-slate-700/50 pb-2 mt-8">5. Common Financial Pitfalls to Avoid</h2>
@@ -960,7 +934,7 @@ function generateBlogPages() {
               <a href="../legal/contact.html" class="block text-center py-2 px-4 rounded bg-slate-700 hover:bg-emerald-500 hover:text-slate-900 transition-colors text-xs font-bold text-white">Contact Our Team</a>
             </div>
             
-            <div class="adsense-placeholder">Sidebar Ad Block</div>
+
           </aside>
         </div>
       </section>
