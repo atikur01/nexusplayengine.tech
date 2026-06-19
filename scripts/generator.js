@@ -4,6 +4,15 @@ const calculators = require('./data/calculators-data');
 const articles = require('./data/blog-data');
 const legalPages = require('./data/legal-data');
 
+function getArticleDate(index) {
+  const baseDate = new Date("2026-06-19");
+  baseDate.setDate(baseDate.getDate() - (index * 2));
+  const iso = baseDate.toISOString().split('T')[0];
+  const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  const human = `${months[baseDate.getMonth()]} ${baseDate.getDate()}, ${baseDate.getFullYear()}`;
+  return { iso, human };
+}
+
 const rootDir = path.resolve(__dirname, '..');
 const dirs = [
   path.join(rootDir, 'calculators'),
@@ -385,7 +394,9 @@ function generateHomepage() {
   `).join('');
 
   const featuredArticles = articles.slice(0, 6);
-  const articlesHtml = featuredArticles.map(a => `
+  const articlesHtml = featuredArticles.map(a => {
+    const { human } = getArticleDate(articles.indexOf(a));
+    return `
     <div class="bg-slate-800 border border-slate-700/50 rounded-xl overflow-hidden hover:border-emerald-500/30 transition-all flex flex-col justify-between">
       <div class="p-6">
         <span class="text-[10px] uppercase font-bold tracking-wider text-emerald-400">${a.category}</span>
@@ -393,14 +404,15 @@ function generateHomepage() {
         <p class="text-xs text-slate-400 line-clamp-3 leading-relaxed">${a.description}</p>
       </div>
       <div class="px-6 pb-6 pt-2 border-t border-slate-700/30 flex items-center justify-between">
-        <span class="text-[10px] text-slate-500">June 19, 2026</span>
+        <span class="text-[10px] text-slate-500">${human}</span>
         <a href="blog/${a.slug}.html" class="text-xs font-semibold text-emerald-400 hover:text-emerald-300 transition-colors flex items-center space-x-1">
           <span>Read Article</span>
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
         </a>
       </div>
     </div>
-  `).join('');
+  `;
+  }).join('');
 
   const content = `
     <section class="relative overflow-hidden bg-slate-950 py-24 border-b border-slate-800">
@@ -733,7 +745,9 @@ function generateCalculatorPages() {
 }
 
 function generateBlogPages() {
-  const blogListHtml = articles.map(a => `
+  const blogListHtml = articles.map((a, idx) => {
+    const { human } = getArticleDate(idx);
+    return `
     <div class="p-6 rounded-xl bg-slate-800 border border-slate-700/60 hover:border-emerald-500/40 transition-all flex flex-col justify-between">
       <div>
         <span class="text-[10px] uppercase font-bold tracking-wider text-emerald-400 px-2.5 py-0.5 bg-slate-900 border border-slate-700 rounded">${a.category}</span>
@@ -741,14 +755,15 @@ function generateBlogPages() {
         <p class="text-xs text-slate-400 leading-relaxed mb-6">${a.description}</p>
       </div>
       <div class="flex items-center justify-between pt-4 border-t border-slate-700/30">
-        <span class="text-[10px] text-slate-500">June 19, 2026</span>
+        <span class="text-[10px] text-slate-500">${human}</span>
         <a href="${a.slug}.html" class="text-xs font-semibold text-emerald-400 hover:text-emerald-300 flex items-center space-x-1">
           <span>Read Article</span>
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
         </a>
       </div>
     </div>
-  `).join('');
+  `;
+  }).join('');
 
   const indexContent = `
     <section class="bg-slate-950 py-16 border-b border-slate-800">
@@ -768,7 +783,8 @@ function generateBlogPages() {
   const indexHtml = getLayout("Financial Blog - Free Guides & Savings Tips | Nexus Finance Tools", "Read our latest static articles concerning home loan interest rates, SIP calculators, compound formulas, progressive tax rules, and budget savings structures.", indexContent, '../');
   fs.writeFileSync(path.join(rootDir, 'blog', 'index.html'), indexHtml);
 
-  articles.forEach(a => {
+  articles.forEach((a, idx) => {
+    const { iso, human } = getArticleDate(idx);
     const tableHeaders = a.tableData && a.tableData.length > 0 ? Object.keys(a.tableData[0]) : [];
     const tableBody = a.tableData ? a.tableData.map(row => `
       <tr class="border-b border-slate-800">
@@ -800,7 +816,7 @@ function generateBlogPages() {
       "headline": a.title,
       "description": a.description,
       "image": "https://nexusplayengine.tech/assets/images/og-image.png",
-      "datePublished": "2026-06-19",
+      "datePublished": iso,
       "author": { "@type": "Organization", "name": "Nexus Finance Tools" }
     });
 
@@ -821,7 +837,7 @@ function generateBlogPages() {
           <div class="flex items-center space-x-4 mt-4 text-xs text-slate-500">
             <span>By Nexus Editorial Team</span>
             <span>&bull;</span>
-            <span>June 19, 2026</span>
+            <span>${human}</span>
           </div>
         </div>
 
