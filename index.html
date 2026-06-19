@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-slate-900">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nexus Finance Tools - Premium Calculators & Insights</title>
+  <meta name="description" content="Free, mobile-friendly financial calculators for home loans, SIP investments, compound interest, progressive tax tiers, salary conversions, and debt payoff planning.">
+  <link rel="canonical" href="https://nexusplayengine.tech/">
+  <meta property="og:title" content="Nexus Finance Tools - Premium Calculators & Insights">
+  <meta property="og:description" content="Free, mobile-friendly financial calculators for home loans, SIP investments, compound interest, progressive tax tiers, salary conversions, and debt payoff planning.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nexusplayengine.tech/">
+  <meta property="og:image" content="https://nexusplayengine.tech/assets/images/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Nexus Finance Tools - Premium Calculators & Insights">
+  <meta name="twitter:description" content="Free, mobile-friendly financial calculators for home loans, SIP investments, compound interest, progressive tax tiers, salary conversions, and debt payoff planning.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#0F172A',
+            secondary: '#1E293B',
+            accent: '#22C55E',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="assets/css/index.css">
+  
+</head>
+<body class="flex flex-col min-h-screen text-slate-100 bg-slate-900 antialiased font-sans">
+  <header class="sticky top-0 z-50 w-full border-b border-slate-800 bg-slate-900/90 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-8">
+        <a href="index.html" class="flex items-center space-x-2">
+          <span class="text-xl font-extrabold tracking-tight bg-gradient-to-r from-emerald-400 to-teal-500 bg-clip-text text-transparent">NEXUS</span>
+          <span class="text-xs font-semibold px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-slate-300">FINANCE</span>
+        </a>
+        <nav class="hidden md:flex space-x-6">
+          <a href="index.html" class="text-sm font-medium text-slate-300 hover:text-emerald-400 transition-colors">Home</a>
+          <div class="relative group">
+            <button class="flex items-center space-x-1 text-sm font-medium text-slate-300 hover:text-emerald-400 transition-colors focus:outline-none">
+              <span>Calculators</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            </button>
+            <div class="absolute left-0 w-56 mt-2 origin-top-left bg-slate-800 border border-slate-700 rounded-lg shadow-xl hidden group-hover:block transition-all">
+              <div class="py-1">
+                
+    <a href="index.html#loan" class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-700 hover:text-emerald-400 transition-colors">Loan Calculators</a>
+  
+    <a href="index.html#investment" class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-700 hover:text-emerald-400 transition-colors">Investment Calculators</a>
+  
+    <a href="index.html#tax" class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-700 hover:text-emerald-400 transition-colors">Tax Calculators</a>
+  
+    <a href="index.html#salary" class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-700 hover:text-emerald-400 transition-colors">Salary Calculators</a>
+  
+    <a href="index.html#banking" class="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-700 hover:text-emerald-400 transition-colors">Banking Calculators</a>
+  
+              </div>
+            </div>
+          </div>
+          <a href="blog/index.html" class="text-sm font-medium text-slate-300 hover:text-emerald-400 transition-colors">Blog</a>
+          <a href="legal/about.html" class="text-sm font-medium text-slate-300 hover:text-emerald-400 transition-colors">About</a>
+          <a href="legal/contact.html" class="text-sm font-medium text-slate-300 hover:text-emerald-400 transition-colors">Contact</a>
+        </nav>
+      </div>
+      
+      <div class="flex items-center space-x-4">
+        <div class="relative hidden sm:block w-64">
+          <input type="text" id="search-input" placeholder="Search calculators or articles..." class="w-full bg-slate-800 text-white placeholder-slate-400 text-xs rounded-lg border border-slate-700 py-2 pl-4 pr-10 focus:outline-none focus:border-emerald-500 transition-colors">
+          <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+            <svg class="h-4 w-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+          </div>
+          <div id="search-results" class="absolute right-0 w-80 mt-2 bg-slate-800 border border-slate-700 rounded-lg shadow-2xl hidden max-h-96 overflow-y-auto custom-scrollbar z-50"></div>
+        </div>
+        
+        <button id="mobile-menu-btn" class="md:hidden p-2 text-slate-400 hover:text-white focus:outline-none">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
+      </div>
+    </div>
+    
+    <div id="mobile-menu" class="hidden md:hidden border-b border-slate-800 bg-slate-900 px-4 py-4 space-y-3 shadow-lg">
+      <div class="relative w-full mb-3">
+        <input type="text" id="mobile-search-input" placeholder="Search..." class="w-full bg-slate-800 text-white placeholder-slate-400 text-sm rounded-lg border border-slate-700 py-2 pl-4 pr-10 focus:outline-none focus:border-emerald-500">
+        <div id="mobile-search-results" class="absolute left-0 w-full mt-2 bg-slate-800 border border-slate-700 rounded-lg shadow-2xl hidden max-h-60 overflow-y-auto custom-scrollbar z-50"></div>
+      </div>
+      <a href="index.html" class="block text-sm font-medium text-slate-300 hover:text-emerald-400 transition-colors py-1">Home</a>
+      <div class="space-y-1">
+        <span class="block text-xs font-semibold text-slate-500 uppercase tracking-wider">Calculators</span>
+        
+    <a href="index.html#loan" class="block pl-4 py-2 text-sm text-slate-400 hover:text-emerald-400 transition-colors">Loan Calculators</a>
+  
+    <a href="index.html#investment" class="block pl-4 py-2 text-sm text-slate-400 hover:text-emerald-400 transition-colors">Investment Calculators</a>
+  
+    <a href="index.html#tax" class="block pl-4 py-2 text-sm text-slate-400 hover:text-emerald-400 transition-colors">Tax Calculators</a>
+  
+    <a href="index.html#salary" class="block pl-4 py-2 text-sm text-slate-400 hover:text-emerald-400 transition-colors">Salary Calculators</a>
+  
+    <a href="index.html#banking" class="block pl-4 py-2 text-sm text-slate-400 hover:text-emerald-400 transition-colors">Banking Calculators</a>
+  
+      </div>
+      <a href="blog/index.html" class="block text-sm font-medium text-slate-300 hover:text-emerald-400 transition-colors py-1">Blog</a>
+      <a href="legal/about.html" class="block text-sm font-medium text-slate-300 hover:text-emerald-400 transition-colors py-1">About</a>
+      <a href="legal/contact.html" class="block text-sm font-medium text-slate-300 hover:text-emerald-400 transition-colors py-1">Contact</a>
+    </div>
+  </header>
+
+  <main class="flex-grow">
+    
+    <section class="relative overflow-hidden bg-slate-950 py-24 border-b border-slate-800">
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(34,197,94,0.08),transparent_50%)]"></div>
+      <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 relative z-10">
+        <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-6 leading-tight">
+          Premium Financial Calculators for <span class="bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent">Smarter Decisions</span>
+        </h1>
+        <p class="text-base sm:text-lg text-slate-400 mb-8 max-w-2xl mx-auto leading-relaxed">
+          Accurate, simple, and mobile-friendly calculators for loans, investments, taxes, retirement, and banking. Plan your investments and manage payments instantly.
+        </p>
+        
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto">
+          <a href="#categories" class="w-full sm:w-auto px-6 py-3 bg-emerald-500 hover:bg-emerald-600 text-slate-900 font-bold rounded-lg transition-all text-center shadow-lg shadow-emerald-500/20">Explore Categories</a>
+          <a href="blog/index.html" class="w-full sm:w-auto px-6 py-3 bg-slate-800 hover:bg-slate-700 text-white font-medium rounded-lg transition-all text-center border border-slate-700">Financial Articles</a>
+        </div>
+      </div>
+    </section>
+
+    <!--
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <div class="adsense-placeholder">Advertisement Space (Header Block)</div>
+    </div>
+    -->
+
+    <section id="categories" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="text-center mb-12">
+        <h2 class="text-2xl sm:text-3xl font-bold text-white">Calculator Categories</h2>
+        <p class="text-slate-400 mt-2 text-sm">Choose from our curated groups of financial planning tools.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+      <div id="loan" class="p-6 rounded-xl bg-slate-800 border border-slate-700/60 shadow-xl flex flex-col justify-between scroll-mt-20">
+        <div>
+          <div class="flex items-center space-x-3 mb-4">
+            <div class="p-2.5 rounded-lg bg-slate-900 border border-slate-700">
+              <svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            </div>
+            <h3 class="text-lg font-bold text-white">Loan Calculators</h3>
+          </div>
+          <p class="text-xs text-slate-400 mb-6 leading-relaxed">Evaluate monthly repayments, total interest costs, and amortization schedules.</p>
+          <ul class="space-y-2.5">
+            
+      <li>
+        <a href="calculators/emi-calculator.html" class="flex items-center justify-between p-2.5 rounded-lg bg-slate-900/60 hover:bg-slate-700/50 hover:text-emerald-400 transition-colors border border-slate-700/30">
+          <span class="text-sm font-medium text-slate-300 hover:text-emerald-400">Equated Monthly Installment (EMI) Calculator</span>
+          <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </a>
+      </li>
+    
+      <li>
+        <a href="calculators/personal-loan-calculator.html" class="flex items-center justify-between p-2.5 rounded-lg bg-slate-900/60 hover:bg-slate-700/50 hover:text-emerald-400 transition-colors border border-slate-700/30">
+          <span class="text-sm font-medium text-slate-300 hover:text-emerald-400">Personal Loan Calculator</span>
+          <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </a>
+      </li>
+    
+      <li>
+        <a href="calculators/home-loan-calculator.html" class="flex items-center justify-between p-2.5 rounded-lg bg-slate-900/60 hover:bg-slate-700/50 hover:text-emerald-400 transition-colors border border-slate-700/30">
+          <span class="text-sm font-medium text-slate-300 hover:text-emerald-400">Home Loan Calculator</span>
+          <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </a>
+      </li>
+    
+      <li>
+        <a href="calculators/car-loan-calculator.html" class="flex items-center justify-between p-2.5 rounded-lg bg-slate-900/60 hover:bg-slate-700/50 hover:text-emerald-400 transition-colors border border-slate-700/30">
+          <span class="text-sm font-medium text-slate-300 hover:text-emerald-400">Car Loan Calculator</span>
+          <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </a>
+      </li>
+    
+      <li>
+        <a href="calculators/mortgage-calculator.html" class="flex items-center justify-between p-2.5 rounded-lg bg-slate-900/60 hover:bg-slate-700/50 hover:text-emerald-400 transition-colors border border-slate-700/30">
+          <span class="text-sm font-medium text-slate-300 hover:text-emerald-400">Mortgage Payment Calculator</span>
+          <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </a>
+      </li>
+    
+          </ul>
+        </div>
+      </div>
+    
+      <div id="investment" class="p-6 rounded-xl bg-slate-800 border border-slate-700/60 shadow-xl flex flex-col justify-between scroll-mt-20">
+        <div>
+          <div class="flex items-center space-x-3 mb-4">
+            <div class="p-2.5 rounded-lg bg-slate-900 border border-slate-700">
+              <svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+            </div>
+            <h3 class="text-lg font-bold text-white">Investment Calculators</h3>
+          </div>
+          <p class="text-xs text-slate-400 mb-6 leading-relaxed">Project savings growth, mutual fund SIP accumulations, compound interest and maturity amounts.</p>
+          <ul class="space-y-2.5">
+            
+      <li>
+        <a href="calculators/sip-calculator.html" class="flex items-center justify-between p-2.5 rounded-lg bg-slate-900/60 hover:bg-slate-700/50 hover:text-emerald-400 transition-colors border border-slate-700/30">
+          <span class="text-sm font-medium text-slate-300 hover:text-emerald-400">Systematic Investment Plan (SIP) Calculator</span>
+          <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </a>
+      </li>
+    
+      <li>
+        <a href="calculators/compound-interest-calculator.html" class="flex items-center justify-between p-2.5 rounded-lg bg-slate-900/60 hover:bg-slate-700/50 hover:text-emerald-400 transition-colors border border-slate-700/30">
+          <span class="text-sm font-medium text-slate-300 hover:text-emerald-400">Compound Interest Calculator</span>
+          <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </a>
+      </li>
+    
+      <li>
+        <a href="calculators/fixed-deposit-calculator.html" class="flex items-center justify-between p-2.5 rounded-lg bg-slate-900/60 hover:bg-slate-700/50 hover:text-emerald-400 transition-colors border border-slate-700/30">
+          <span class="text-sm font-medium text-slate-300 hover:text-emerald-400">Fixed Deposit (FD) Calculator</span>
+          <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </a>
+      </li>
+    
+      <li>
+        <a href="calculators/recurring-deposit-calculator.html" class="flex items-center justify-between p-2.5 rounded-lg bg-slate-900/60 hover:bg-slate-700/50 hover:text-emerald-400 transition-colors border border-slate-700/30">
+          <span class="text-sm font-medium text-slate-300 hover:text-emerald-400">Recurring Deposit (RD) Calculator</span>
+          <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </a>
+      </li>
+    
+      <li>
+        <a href="calculators/retirement-calculator.html" class="flex items-center justify-between p-2.5 rounded-lg bg-slate-900/60 hover:bg-slate-700/50 hover:text-emerald-400 transition-colors border border-slate-700/30">
+          <span class="text-sm font-medium text-slate-300 hover:text-emerald-400">Retirement Planning Calculator</span>
+          <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </a>
+      </li>
+    
+          </ul>
+        </div>
+      </div>
+    
+      <div id="tax" class="p-6 rounded-xl bg-slate-800 border border-slate-700/60 shadow-xl flex flex-col justify-between scroll-mt-20">
+        <div>
+          <div class="flex items-center space-x-3 mb-4">
+            <div class="p-2.5 rounded-lg bg-slate-900 border border-slate-700">
+              <svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 14l2-2 4 4m0-7l-3-3-3 3m2 8h.01M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            </div>
+            <h3 class="text-lg font-bold text-white">Tax Calculators</h3>
+          </div>
+          <p class="text-xs text-slate-400 mb-6 leading-relaxed">Estimate net take-home salaries, global value-added tax components, and progressive tax tiers.</p>
+          <ul class="space-y-2.5">
+            
+      <li>
+        <a href="calculators/income-tax-calculator.html" class="flex items-center justify-between p-2.5 rounded-lg bg-slate-900/60 hover:bg-slate-700/50 hover:text-emerald-400 transition-colors border border-slate-700/30">
+          <span class="text-sm font-medium text-slate-300 hover:text-emerald-400">Simplified Income Tax Calculator</span>
+          <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </a>
+      </li>
+    
+      <li>
+        <a href="calculators/vat-calculator.html" class="flex items-center justify-between p-2.5 rounded-lg bg-slate-900/60 hover:bg-slate-700/50 hover:text-emerald-400 transition-colors border border-slate-700/30">
+          <span class="text-sm font-medium text-slate-300 hover:text-emerald-400">VAT Calculator</span>
+          <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </a>
+      </li>
+    
+      <li>
+        <a href="calculators/sales-tax-calculator.html" class="flex items-center justify-between p-2.5 rounded-lg bg-slate-900/60 hover:bg-slate-700/50 hover:text-emerald-400 transition-colors border border-slate-700/30">
+          <span class="text-sm font-medium text-slate-300 hover:text-emerald-400">Sales Tax Calculator</span>
+          <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </a>
+      </li>
+    
+          </ul>
+        </div>
+      </div>
+    
+      <div id="salary" class="p-6 rounded-xl bg-slate-800 border border-slate-700/60 shadow-xl flex flex-col justify-between scroll-mt-20">
+        <div>
+          <div class="flex items-center space-x-3 mb-4">
+            <div class="p-2.5 rounded-lg bg-slate-900 border border-slate-700">
+              <svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            </div>
+            <h3 class="text-lg font-bold text-white">Salary Calculators</h3>
+          </div>
+          <p class="text-xs text-slate-400 mb-6 leading-relaxed">Calculate hourly wage conversions, pay periods, and regular time vs overtime totals.</p>
+          <ul class="space-y-2.5">
+            
+      <li>
+        <a href="calculators/salary-calculator.html" class="flex items-center justify-between p-2.5 rounded-lg bg-slate-900/60 hover:bg-slate-700/50 hover:text-emerald-400 transition-colors border border-slate-700/30">
+          <span class="text-sm font-medium text-slate-300 hover:text-emerald-400">Salary Pay Frequency Calculator</span>
+          <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </a>
+      </li>
+    
+      <li>
+        <a href="calculators/hourly-wage-calculator.html" class="flex items-center justify-between p-2.5 rounded-lg bg-slate-900/60 hover:bg-slate-700/50 hover:text-emerald-400 transition-colors border border-slate-700/30">
+          <span class="text-sm font-medium text-slate-300 hover:text-emerald-400">Hourly Wage to Salary Converter</span>
+          <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </a>
+      </li>
+    
+      <li>
+        <a href="calculators/overtime-calculator.html" class="flex items-center justify-between p-2.5 rounded-lg bg-slate-900/60 hover:bg-slate-700/50 hover:text-emerald-400 transition-colors border border-slate-700/30">
+          <span class="text-sm font-medium text-slate-300 hover:text-emerald-400">Overtime Pay Calculator</span>
+          <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </a>
+      </li>
+    
+          </ul>
+        </div>
+      </div>
+    
+      <div id="banking" class="p-6 rounded-xl bg-slate-800 border border-slate-700/60 shadow-xl flex flex-col justify-between scroll-mt-20">
+        <div>
+          <div class="flex items-center space-x-3 mb-4">
+            <div class="p-2.5 rounded-lg bg-slate-900 border border-slate-700">
+              <svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
+            </div>
+            <h3 class="text-lg font-bold text-white">Banking Calculators</h3>
+          </div>
+          <p class="text-xs text-slate-400 mb-6 leading-relaxed">Determine simple vs compound comparisons, outstanding debt payoffs and snowball reduction methods.</p>
+          <ul class="space-y-2.5">
+            
+      <li>
+        <a href="calculators/savings-calculator.html" class="flex items-center justify-between p-2.5 rounded-lg bg-slate-900/60 hover:bg-slate-700/50 hover:text-emerald-400 transition-colors border border-slate-700/30">
+          <span class="text-sm font-medium text-slate-300 hover:text-emerald-400">Savings Growth Calculator</span>
+          <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </a>
+      </li>
+    
+      <li>
+        <a href="calculators/interest-calculator.html" class="flex items-center justify-between p-2.5 rounded-lg bg-slate-900/60 hover:bg-slate-700/50 hover:text-emerald-400 transition-colors border border-slate-700/30">
+          <span class="text-sm font-medium text-slate-300 hover:text-emerald-400">Interest Comparison Calculator</span>
+          <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </a>
+      </li>
+    
+      <li>
+        <a href="calculators/loan-payoff-calculator.html" class="flex items-center justify-between p-2.5 rounded-lg bg-slate-900/60 hover:bg-slate-700/50 hover:text-emerald-400 transition-colors border border-slate-700/30">
+          <span class="text-sm font-medium text-slate-300 hover:text-emerald-400">Loan Payoff & Acceleration Calculator</span>
+          <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </a>
+      </li>
+    
+      <li>
+        <a href="calculators/debt-reduction-calculator.html" class="flex items-center justify-between p-2.5 rounded-lg bg-slate-900/60 hover:bg-slate-700/50 hover:text-emerald-400 transition-colors border border-slate-700/30">
+          <span class="text-sm font-medium text-slate-300 hover:text-emerald-400">Debt Reduction Estimator</span>
+          <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </a>
+      </li>
+    
+          </ul>
+        </div>
+      </div>
+    
+      </div>
+    </section>
+
+    <section class="bg-slate-950/40 border-y border-slate-800/80 py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-2xl sm:text-3xl font-bold text-white">Most Popular Calculators</h2>
+          <p class="text-slate-400 mt-2 text-sm">Our most frequently used financial tools by savings planning professionals.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          
+    <div class="p-6 rounded-xl bg-slate-800 border border-slate-700/50 hover:border-emerald-500/50 transition-all flex flex-col justify-between">
+      <div>
+        <span class="text-[10px] uppercase font-bold tracking-wider text-emerald-400 px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20">Loan Calculators</span>
+        <h3 class="text-base font-bold text-white mt-3 mb-2">Equated Monthly Installment (EMI) Calculator</h3>
+        <p class="text-xs text-slate-400 leading-relaxed mb-6">Calculate your Equated Monthly Installment (EMI) for home, car, or personal loans. See detailed principal vs interest breakdowns and total costs.</p>
+      </div>
+      <a href="calculators/emi-calculator.html" class="inline-flex items-center justify-center py-2.5 px-4 rounded-lg bg-slate-700 hover:bg-emerald-500 hover:text-slate-900 text-sm font-semibold text-white transition-all">
+        Open Calculator
+      </a>
+    </div>
+  
+    <div class="p-6 rounded-xl bg-slate-800 border border-slate-700/50 hover:border-emerald-500/50 transition-all flex flex-col justify-between">
+      <div>
+        <span class="text-[10px] uppercase font-bold tracking-wider text-emerald-400 px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20">Loan Calculators</span>
+        <h3 class="text-base font-bold text-white mt-3 mb-2">Personal Loan Calculator</h3>
+        <p class="text-xs text-slate-400 leading-relaxed mb-6">Estimate monthly payments, total interest, and the final payout cost for personal loans. Fast, free, and optimized for mobile screens.</p>
+      </div>
+      <a href="calculators/personal-loan-calculator.html" class="inline-flex items-center justify-center py-2.5 px-4 rounded-lg bg-slate-700 hover:bg-emerald-500 hover:text-slate-900 text-sm font-semibold text-white transition-all">
+        Open Calculator
+      </a>
+    </div>
+  
+    <div class="p-6 rounded-xl bg-slate-800 border border-slate-700/50 hover:border-emerald-500/50 transition-all flex flex-col justify-between">
+      <div>
+        <span class="text-[10px] uppercase font-bold tracking-wider text-emerald-400 px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20">Loan Calculators</span>
+        <h3 class="text-base font-bold text-white mt-3 mb-2">Home Loan Calculator</h3>
+        <p class="text-xs text-slate-400 leading-relaxed mb-6">Plan your home purchase using our interactive home loan calculator. Calculate monthly payments, interest totals, and required down payments.</p>
+      </div>
+      <a href="calculators/home-loan-calculator.html" class="inline-flex items-center justify-center py-2.5 px-4 rounded-lg bg-slate-700 hover:bg-emerald-500 hover:text-slate-900 text-sm font-semibold text-white transition-all">
+        Open Calculator
+      </a>
+    </div>
+  
+    <div class="p-6 rounded-xl bg-slate-800 border border-slate-700/50 hover:border-emerald-500/50 transition-all flex flex-col justify-between">
+      <div>
+        <span class="text-[10px] uppercase font-bold tracking-wider text-emerald-400 px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20">Loan Calculators</span>
+        <h3 class="text-base font-bold text-white mt-3 mb-2">Car Loan Calculator</h3>
+        <p class="text-xs text-slate-400 leading-relaxed mb-6">Determine your monthly auto loan installments and interest costs. Plan your next vehicle purchase with confidence.</p>
+      </div>
+      <a href="calculators/car-loan-calculator.html" class="inline-flex items-center justify-center py-2.5 px-4 rounded-lg bg-slate-700 hover:bg-emerald-500 hover:text-slate-900 text-sm font-semibold text-white transition-all">
+        Open Calculator
+      </a>
+    </div>
+  
+    <div class="p-6 rounded-xl bg-slate-800 border border-slate-700/50 hover:border-emerald-500/50 transition-all flex flex-col justify-between">
+      <div>
+        <span class="text-[10px] uppercase font-bold tracking-wider text-emerald-400 px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20">Loan Calculators</span>
+        <h3 class="text-base font-bold text-white mt-3 mb-2">Mortgage Payment Calculator</h3>
+        <p class="text-xs text-slate-400 leading-relaxed mb-6">Calculate your complete monthly mortgage payments, including property tax, insurance, and interest breakdown.</p>
+      </div>
+      <a href="calculators/mortgage-calculator.html" class="inline-flex items-center justify-center py-2.5 px-4 rounded-lg bg-slate-700 hover:bg-emerald-500 hover:text-slate-900 text-sm font-semibold text-white transition-all">
+        Open Calculator
+      </a>
+    </div>
+  
+    <div class="p-6 rounded-xl bg-slate-800 border border-slate-700/50 hover:border-emerald-500/50 transition-all flex flex-col justify-between">
+      <div>
+        <span class="text-[10px] uppercase font-bold tracking-wider text-emerald-400 px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20">Investment Calculators</span>
+        <h3 class="text-base font-bold text-white mt-3 mb-2">Systematic Investment Plan (SIP) Calculator</h3>
+        <p class="text-xs text-slate-400 leading-relaxed mb-6">Calculate potential returns from your Systematic Investment Plan (SIP) investments in mutual funds and index funds.</p>
+      </div>
+      <a href="calculators/sip-calculator.html" class="inline-flex items-center justify-center py-2.5 px-4 rounded-lg bg-slate-700 hover:bg-emerald-500 hover:text-slate-900 text-sm font-semibold text-white transition-all">
+        Open Calculator
+      </a>
+    </div>
+  
+        </div>
+      </div>
+    </section>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <div class="adsense-placeholder">Advertisement Space (In-Feed Block)</div>
+    </div>
+
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="text-center mb-12">
+        <h2 class="text-2xl sm:text-3xl font-bold text-white">Latest Financial Insights</h2>
+        <p class="text-slate-400 mt-2 text-sm">Stay ahead of your money with our long-form guides and planning articles.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+    <div class="bg-slate-800 border border-slate-700/50 rounded-xl overflow-hidden hover:border-emerald-500/30 transition-all flex flex-col justify-between">
+      <div class="p-6">
+        <span class="text-[10px] uppercase font-bold tracking-wider text-emerald-400">Investing</span>
+        <h3 class="text-base font-bold text-white mt-2 mb-3"><a href="blog/what-is-compound-interest.html" class="hover:underline">What Is Compound Interest: The Ultimate Guide to Compound Growth</a></h3>
+        <p class="text-xs text-slate-400 line-clamp-3 leading-relaxed">Learn how compound interest works, the formula behind compound growth, and how to harness the power of compounding for your investments.</p>
+      </div>
+      <div class="px-6 pb-6 pt-2 border-t border-slate-700/30 flex items-center justify-between">
+        <span class="text-[10px] text-slate-500">June 19, 2026</span>
+        <a href="blog/what-is-compound-interest.html" class="text-xs font-semibold text-emerald-400 hover:text-emerald-300 transition-colors flex items-center space-x-1">
+          <span>Read Article</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </a>
+      </div>
+    </div>
+  
+    <div class="bg-slate-800 border border-slate-700/50 rounded-xl overflow-hidden hover:border-emerald-500/30 transition-all flex flex-col justify-between">
+      <div class="p-6">
+        <span class="text-[10px] uppercase font-bold tracking-wider text-emerald-400">Loans</span>
+        <h3 class="text-base font-bold text-white mt-2 mb-3"><a href="blog/how-emi-is-calculated.html" class="hover:underline">How EMI Is Calculated: A Deep Dive into Loan Amortization</a></h3>
+        <p class="text-xs text-slate-400 line-clamp-3 leading-relaxed">Understand the formula and math behind Equated Monthly Installments (EMIs). Learn how interest rates and tenures affect your monthly payment.</p>
+      </div>
+      <div class="px-6 pb-6 pt-2 border-t border-slate-700/30 flex items-center justify-between">
+        <span class="text-[10px] text-slate-500">June 19, 2026</span>
+        <a href="blog/how-emi-is-calculated.html" class="text-xs font-semibold text-emerald-400 hover:text-emerald-300 transition-colors flex items-center space-x-1">
+          <span>Read Article</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </a>
+      </div>
+    </div>
+  
+    <div class="bg-slate-800 border border-slate-700/50 rounded-xl overflow-hidden hover:border-emerald-500/30 transition-all flex flex-col justify-between">
+      <div class="p-6">
+        <span class="text-[10px] uppercase font-bold tracking-wider text-emerald-400">Budgeting</span>
+        <h3 class="text-base font-bold text-white mt-2 mb-3"><a href="blog/best-savings-strategies.html" class="hover:underline">Best Savings Strategies for Building Your Wealth</a></h3>
+        <p class="text-xs text-slate-400 line-clamp-3 leading-relaxed">Discover proven strategies to save money, build an emergency fund, and optimize your monthly budget for long-term growth.</p>
+      </div>
+      <div class="px-6 pb-6 pt-2 border-t border-slate-700/30 flex items-center justify-between">
+        <span class="text-[10px] text-slate-500">June 19, 2026</span>
+        <a href="blog/best-savings-strategies.html" class="text-xs font-semibold text-emerald-400 hover:text-emerald-300 transition-colors flex items-center space-x-1">
+          <span>Read Article</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </a>
+      </div>
+    </div>
+  
+    <div class="bg-slate-800 border border-slate-700/50 rounded-xl overflow-hidden hover:border-emerald-500/30 transition-all flex flex-col justify-between">
+      <div class="p-6">
+        <span class="text-[10px] uppercase font-bold tracking-wider text-emerald-400">Loans</span>
+        <h3 class="text-base font-bold text-white mt-2 mb-3"><a href="blog/home-loan-guide.html" class="hover:underline">The Ultimate Home Loan Guide: How to Secure the Best Rates</a></h3>
+        <p class="text-xs text-slate-400 line-clamp-3 leading-relaxed">A comprehensive guide to home loans, mortgage terms, down payments, and how to qualify for low-interest housing credit.</p>
+      </div>
+      <div class="px-6 pb-6 pt-2 border-t border-slate-700/30 flex items-center justify-between">
+        <span class="text-[10px] text-slate-500">June 19, 2026</span>
+        <a href="blog/home-loan-guide.html" class="text-xs font-semibold text-emerald-400 hover:text-emerald-300 transition-colors flex items-center space-x-1">
+          <span>Read Article</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </a>
+      </div>
+    </div>
+  
+    <div class="bg-slate-800 border border-slate-700/50 rounded-xl overflow-hidden hover:border-emerald-500/30 transition-all flex flex-col justify-between">
+      <div class="p-6">
+        <span class="text-[10px] uppercase font-bold tracking-wider text-emerald-400">Budgeting</span>
+        <h3 class="text-base font-bold text-white mt-2 mb-3"><a href="blog/personal-finance-basics.html" class="hover:underline">Personal Finance Basics: Five Rules for Success</a></h3>
+        <p class="text-xs text-slate-400 line-clamp-3 leading-relaxed">Master the fundamentals of personal finance. Learn how to budget, track spending, manage debt, save, and invest for a secure future.</p>
+      </div>
+      <div class="px-6 pb-6 pt-2 border-t border-slate-700/30 flex items-center justify-between">
+        <span class="text-[10px] text-slate-500">June 19, 2026</span>
+        <a href="blog/personal-finance-basics.html" class="text-xs font-semibold text-emerald-400 hover:text-emerald-300 transition-colors flex items-center space-x-1">
+          <span>Read Article</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </a>
+      </div>
+    </div>
+  
+    <div class="bg-slate-800 border border-slate-700/50 rounded-xl overflow-hidden hover:border-emerald-500/30 transition-all flex flex-col justify-between">
+      <div class="p-6">
+        <span class="text-[10px] uppercase font-bold tracking-wider text-emerald-400">Investing</span>
+        <h3 class="text-base font-bold text-white mt-2 mb-3"><a href="blog/emergency-fund-planning-how-to-build-a-financial-safety-net.html" class="hover:underline">Emergency Fund Planning: How to Build a Financial Safety Net</a></h3>
+        <p class="text-xs text-slate-400 line-clamp-3 leading-relaxed">Discover comprehensive insights on emergency fund planning: how to build a financial safety net. Learn math formulas, strategies, FAQs, and tips in this detailed financial guide.</p>
+      </div>
+      <div class="px-6 pb-6 pt-2 border-t border-slate-700/30 flex items-center justify-between">
+        <span class="text-[10px] text-slate-500">June 19, 2026</span>
+        <a href="blog/emergency-fund-planning-how-to-build-a-financial-safety-net.html" class="text-xs font-semibold text-emerald-400 hover:text-emerald-300 transition-colors flex items-center space-x-1">
+          <span>Read Article</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </a>
+      </div>
+    </div>
+  
+      </div>
+      <div class="text-center mt-10">
+        <a href="blog/index.html" class="inline-flex items-center space-x-2 text-emerald-400 hover:text-emerald-300 font-bold transition-colors">
+          <span>View All Articles</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+        </a>
+      </div>
+    </section>
+
+    <section class="bg-slate-950/40 border-t border-slate-800/80 py-16">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-12">
+          <h2 class="text-2xl sm:text-3xl font-bold text-white">Frequently Asked Questions</h2>
+          <p class="text-slate-400 mt-2 text-sm">General answers regarding our platform, calculation metrics, and security.</p>
+        </div>
+        <div class="space-y-4">
+          <div class="p-5 rounded-xl bg-slate-800 border border-slate-700">
+            <h3 class="text-base font-semibold text-white">Are the calculators free to use?</h3>
+            <p class="text-sm text-slate-400 mt-2 leading-relaxed">Yes, all of our calculators are 100% free, require no user registrations, and do not collect any personal bank credentials.</p>
+          </div>
+          <div class="p-5 rounded-xl bg-slate-800 border border-slate-700">
+            <h3 class="text-base font-semibold text-white">How accurate are the results?</h3>
+            <p class="text-sm text-slate-400 mt-2 leading-relaxed">Our equations follow standard industrial, banking, and legal math models. However, calculations should serve as estimations and not replace professional brokerage, tax, or legal consulting.</p>
+          </div>
+          <div class="p-5 rounded-xl bg-slate-800 border border-slate-700">
+            <h3 class="text-base font-semibold text-white">Do you log my financial inputs?</h3>
+            <p class="text-sm text-slate-400 mt-2 leading-relaxed">No, all calculations are executed locally inside your web browser. None of your input details are ever uploaded or saved on our servers.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+  </main>
+
+  <footer class="bg-slate-950 border-t border-slate-800 text-slate-400">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div class="space-y-4">
+          <a href="index.html" class="flex items-center space-x-2">
+            <span class="text-xl font-extrabold tracking-tight bg-gradient-to-r from-emerald-400 to-teal-500 bg-clip-text text-transparent">NEXUS</span>
+          </a>
+          <p class="text-xs leading-relaxed text-slate-500">
+            Nexus Finance Tools offers free, high-performance financial calculators and in-depth articles to guide your investment, debt, tax, and salary decisions.
+          </p>
+          <div class="flex space-x-4 pt-2">
+            <a href="#" class="hover:text-emerald-400 transition-colors"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg></a>
+            <a href="#" class="hover:text-emerald-400 transition-colors"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+          </div>
+        </div>
+        
+        <div>
+          <h4 class="text-sm font-semibold text-slate-200 uppercase tracking-wider mb-4">Calculators</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="calculators/emi-calculator.html" class="hover:text-emerald-400 transition-colors">EMI Calculator</a></li>
+            <li><a href="calculators/sip-calculator.html" class="hover:text-emerald-400 transition-colors">SIP Calculator</a></li>
+            <li><a href="calculators/compound-interest-calculator.html" class="hover:text-emerald-400 transition-colors">Compound Interest</a></li>
+            <li><a href="calculators/salary-calculator.html" class="hover:text-emerald-400 transition-colors">Salary Calculator</a></li>
+            <li><a href="calculators/mortgage-calculator.html" class="hover:text-emerald-400 transition-colors">Mortgage Calculator</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="text-sm font-semibold text-slate-200 uppercase tracking-wider mb-4">Legal</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="legal/about.html" class="hover:text-emerald-400 transition-colors">About Us</a></li>
+            <li><a href="legal/contact.html" class="hover:text-emerald-400 transition-colors">Contact Us</a></li>
+            <li><a href="legal/privacy-policy.html" class="hover:text-emerald-400 transition-colors">Privacy Policy</a></li>
+            <li><a href="legal/terms.html" class="hover:text-emerald-400 transition-colors">Terms & Conditions</a></li>
+            <li><a href="legal/disclaimer.html" class="hover:text-emerald-400 transition-colors">Disclaimer</a></li>
+            <li><a href="legal/cookie-policy.html" class="hover:text-emerald-400 transition-colors">Cookie Policy</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="text-sm font-semibold text-slate-200 uppercase tracking-wider mb-4">Newsletter</h4>
+          <p class="text-xs text-slate-500 mb-3">Get financial calculations, budgeting templates, and tips in your inbox.</p>
+          <form onsubmit="event.preventDefault(); alert('Subscribed successfully!');" class="flex flex-col space-y-2">
+            <input type="email" placeholder="Your email..." required class="w-full bg-slate-800 text-xs rounded border border-slate-700 py-2 px-3 focus:outline-none focus:border-emerald-500 text-white">
+            <button type="submit" class="bg-emerald-500 hover:bg-emerald-600 text-slate-900 font-bold py-2 rounded text-xs transition-colors">Subscribe</button>
+          </form>
+        </div>
+      </div>
+      
+      <div class="mt-12 pt-8 border-t border-slate-800 text-center text-xs text-slate-600">
+        <p>&copy; 2026 Nexus Finance Tools. All rights reserved. Calculations are approximations and not verified professional advice.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/search.js"></script>
+  <script>
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (menuBtn && mobileMenu) {
+      menuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+  </script>
+</body>
+</html>
