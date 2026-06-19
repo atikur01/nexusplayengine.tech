@@ -36,6 +36,14 @@
   </script>
   <link rel="stylesheet" href="../assets/css/index.css">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://nexusplayengine.tech/index.html"},{"@type":"ListItem","position":2,"name":"Calculators","item":"https://nexusplayengine.tech/index.html#investment"},{"@type":"ListItem","position":3,"name":"Systematic Investment Plan (SIP) Calculator","item":"https://nexusplayengine.tech/calculators/sip-calculator.html"}]}</script>
+  <script>
+    window.getNexusCurrencySymbol = function(prefix) {
+      if (prefix === '$') {
+        return localStorage.getItem('nexus_currency') || '$';
+      }
+      return prefix || '';
+    };
+  </script>
 </head>
 <body class="flex flex-col min-h-screen text-slate-100 bg-slate-900 antialiased font-sans">
   <header class="sticky top-0 z-50 w-full border-b border-slate-800 bg-slate-900/90 backdrop-blur-md">
@@ -75,6 +83,18 @@
       </div>
       
       <div class="flex items-center space-x-4">
+        <div class="relative">
+          <select id="currency-select" class="bg-slate-800 text-white text-xs rounded-lg border border-slate-700 py-2 px-3 focus:outline-none focus:border-emerald-500 transition-colors cursor-pointer">
+            <option value="$">USD ($)</option>
+            <option value="€">EUR (€)</option>
+            <option value="£">GBP (£)</option>
+            <option value="₹">INR (₹)</option>
+            <option value="¥">JPY (¥)</option>
+            <option value="A$">AUD (A$)</option>
+            <option value="C$">CAD (C$)</option>
+          </select>
+        </div>
+        
         <div class="relative hidden sm:block w-64">
           <input type="text" id="search-input" placeholder="Search calculators or articles..." class="w-full bg-slate-800 text-white placeholder-slate-400 text-xs rounded-lg border border-slate-700 py-2 pl-4 pr-10 focus:outline-none focus:border-emerald-500 transition-colors">
           <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
@@ -93,6 +113,18 @@
       <div class="relative w-full mb-3">
         <input type="text" id="mobile-search-input" placeholder="Search..." class="w-full bg-slate-800 text-white placeholder-slate-400 text-sm rounded-lg border border-slate-700 py-2 pl-4 pr-10 focus:outline-none focus:border-emerald-500">
         <div id="mobile-search-results" class="absolute left-0 w-full mt-2 bg-slate-800 border border-slate-700 rounded-lg shadow-2xl hidden max-h-60 overflow-y-auto custom-scrollbar z-50"></div>
+      </div>
+      <div class="flex items-center justify-between py-2 border-b border-slate-800/60">
+        <span class="text-sm font-medium text-slate-300">Currency</span>
+        <select id="mobile-currency-select" class="bg-slate-800 text-white text-xs rounded-lg border border-slate-700 py-1.5 px-3 focus:outline-none focus:border-emerald-500 transition-colors cursor-pointer">
+          <option value="$">USD ($)</option>
+          <option value="€">EUR (€)</option>
+          <option value="£">GBP (£)</option>
+          <option value="₹">INR (₹)</option>
+          <option value="¥">JPY (¥)</option>
+          <option value="A$">AUD (A$)</option>
+          <option value="C$">CAD (C$)</option>
+        </select>
       </div>
       <a href="../index.html" class="block text-sm font-medium text-slate-300 hover:text-emerald-400 transition-colors py-1">Home</a>
       <div class="space-y-1">
@@ -134,7 +166,7 @@
               
         <div class="mb-6">
           <div class="flex items-center justify-between mb-3">
-            <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider" for="monthly">Monthly Investment ($)</label>
+            <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider" for="monthly">Monthly Investment (<span class="nexus-currency-symbol">$</span>)</label>
             <input type="number" id="monthly-val" value="500" min="10" max="100000" step="50" class="w-28 bg-slate-900/90 border border-slate-700 rounded-lg text-right px-3 py-1 text-sm text-emerald-400 font-mono font-semibold focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/25 transition-all">
           </div>
           <input type="range" id="monthly" min="10" max="100000" step="50" value="500" class="w-full h-1.5 bg-slate-950 rounded-lg appearance-none cursor-pointer focus:outline-none">
@@ -164,27 +196,27 @@
               <h2 class="text-base font-bold text-white border-b border-slate-700 pb-3 mb-5">Calculation Results</h2>
               <div class="space-y-4">
                 
-      <div class="p-4 rounded-lg bg-slate-900/60 border border-slate-800 flex items-center justify-between">
-        <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Total Invested Amount</span>
-        <span class="text-base sm:text-lg font-bold text-white font-mono" id="out-invested">
-          $0
-        </span>
-      </div>
-    
-      <div class="p-4 rounded-lg bg-slate-900/60 border border-slate-800 flex items-center justify-between">
-        <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Estimated Wealth Gains</span>
-        <span class="text-base sm:text-lg font-bold text-white font-mono" id="out-returns">
-          $0
-        </span>
-      </div>
-    
-      <div class="p-4 rounded-lg bg-slate-900/60 border border-slate-800 flex items-center justify-between">
-        <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Total Projected Value</span>
-        <span class="text-base sm:text-lg font-bold text-white font-mono" id="out-value">
-          $0
-        </span>
-      </div>
-    
+        <div class="p-4 rounded-lg bg-slate-900/60 border border-slate-800 flex items-center justify-between">
+          <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Total Invested Amount</span>
+          <span class="text-base sm:text-lg font-bold text-white font-mono" id="out-invested">
+            <span class="nexus-currency-symbol">$</span>0
+          </span>
+        </div>
+      
+        <div class="p-4 rounded-lg bg-slate-900/60 border border-slate-800 flex items-center justify-between">
+          <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Estimated Wealth Gains</span>
+          <span class="text-base sm:text-lg font-bold text-white font-mono" id="out-returns">
+            <span class="nexus-currency-symbol">$</span>0
+          </span>
+        </div>
+      
+        <div class="p-4 rounded-lg bg-slate-900/60 border border-slate-800 flex items-center justify-between">
+          <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Total Projected Value</span>
+          <span class="text-base sm:text-lg font-bold text-white font-mono" id="out-value">
+            <span class="nexus-currency-symbol">$</span>0
+          </span>
+        </div>
+      
               </div>
             </div>
             
@@ -330,7 +362,8 @@
           if (isNaN(val) || !isFinite(val)) {
             val = 0;
           }
-          el_out_invested.textContent = '$' + val.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + '';
+          const prefixVal = '$' === '$' ? (window.getNexusCurrencySymbol ? window.getNexusCurrencySymbol('$') : '$') : '$';
+          el_out_invested.textContent = prefixVal + val.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + '';
         } else {
           el_out_invested.textContent = val;
         }
@@ -343,7 +376,8 @@
           if (isNaN(val) || !isFinite(val)) {
             val = 0;
           }
-          el_out_returns.textContent = '$' + val.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + '';
+          const prefixVal = '$' === '$' ? (window.getNexusCurrencySymbol ? window.getNexusCurrencySymbol('$') : '$') : '$';
+          el_out_returns.textContent = prefixVal + val.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + '';
         } else {
           el_out_returns.textContent = val;
         }
@@ -356,7 +390,8 @@
           if (isNaN(val) || !isFinite(val)) {
             val = 0;
           }
-          el_out_value.textContent = '$' + val.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + '';
+          const prefixVal = '$' === '$' ? (window.getNexusCurrencySymbol ? window.getNexusCurrencySymbol('$') : '$') : '$';
+          el_out_value.textContent = prefixVal + val.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + '';
         } else {
           el_out_value.textContent = val;
         }
@@ -416,6 +451,7 @@
           runCalculation();
         });
       
+          window.runCalculation = runCalculation;
           runCalculation();
         });
       </script>

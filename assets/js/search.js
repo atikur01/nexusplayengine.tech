@@ -73,4 +73,38 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  const currencySelect = document.getElementById('currency-select');
+  const mobileCurrencySelect = document.getElementById('mobile-currency-select');
+
+  function updateCurrency(newCurrency) {
+    localStorage.setItem('nexus_currency', newCurrency);
+    if (currencySelect) {
+      currencySelect.value = newCurrency;
+    }
+    if (mobileCurrencySelect) {
+      mobileCurrencySelect.value = newCurrency;
+    }
+    document.querySelectorAll('.nexus-currency-symbol').forEach(el => {
+      el.textContent = newCurrency;
+    });
+    if (typeof window.runCalculation === 'function') {
+      window.runCalculation();
+    }
+  }
+
+  const savedCurrency = localStorage.getItem('nexus_currency') || '$';
+  updateCurrency(savedCurrency);
+
+  if (currencySelect) {
+    currencySelect.addEventListener('change', (e) => {
+      updateCurrency(e.target.value);
+    });
+  }
+
+  if (mobileCurrencySelect) {
+    mobileCurrencySelect.addEventListener('change', (e) => {
+      updateCurrency(e.target.value);
+    });
+  }
 });

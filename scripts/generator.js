@@ -207,6 +207,14 @@ function getLayout(title, description, content, relativePath, jsonLd = '') {
   </script>
   <link rel="stylesheet" href="${cssPath}">
   ${jsonLd ? `<script type="application/ld+json">${jsonLd}</script>` : ''}
+  <script>
+    window.getNexusCurrencySymbol = function(prefix) {
+      if (prefix === '$') {
+        return localStorage.getItem('nexus_currency') || '$';
+      }
+      return prefix || '';
+    };
+  </script>
 </head>
 <body class="flex flex-col min-h-screen text-slate-100 bg-slate-900 antialiased font-sans">
   <header class="sticky top-0 z-50 w-full border-b border-slate-800 bg-slate-900/90 backdrop-blur-md">
@@ -236,6 +244,18 @@ function getLayout(title, description, content, relativePath, jsonLd = '') {
       </div>
       
       <div class="flex items-center space-x-4">
+        <div class="relative">
+          <select id="currency-select" class="bg-slate-800 text-white text-xs rounded-lg border border-slate-700 py-2 px-3 focus:outline-none focus:border-emerald-500 transition-colors cursor-pointer">
+            <option value="$">USD ($)</option>
+            <option value="€">EUR (€)</option>
+            <option value="£">GBP (£)</option>
+            <option value="₹">INR (₹)</option>
+            <option value="¥">JPY (¥)</option>
+            <option value="A$">AUD (A$)</option>
+            <option value="C$">CAD (C$)</option>
+          </select>
+        </div>
+        
         <div class="relative hidden sm:block w-64">
           <input type="text" id="search-input" placeholder="Search calculators or articles..." class="w-full bg-slate-800 text-white placeholder-slate-400 text-xs rounded-lg border border-slate-700 py-2 pl-4 pr-10 focus:outline-none focus:border-emerald-500 transition-colors">
           <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
@@ -254,6 +274,18 @@ function getLayout(title, description, content, relativePath, jsonLd = '') {
       <div class="relative w-full mb-3">
         <input type="text" id="mobile-search-input" placeholder="Search..." class="w-full bg-slate-800 text-white placeholder-slate-400 text-sm rounded-lg border border-slate-700 py-2 pl-4 pr-10 focus:outline-none focus:border-emerald-500">
         <div id="mobile-search-results" class="absolute left-0 w-full mt-2 bg-slate-800 border border-slate-700 rounded-lg shadow-2xl hidden max-h-60 overflow-y-auto custom-scrollbar z-50"></div>
+      </div>
+      <div class="flex items-center justify-between py-2 border-b border-slate-800/60">
+        <span class="text-sm font-medium text-slate-300">Currency</span>
+        <select id="mobile-currency-select" class="bg-slate-800 text-white text-xs rounded-lg border border-slate-700 py-1.5 px-3 focus:outline-none focus:border-emerald-500 transition-colors cursor-pointer">
+          <option value="$">USD ($)</option>
+          <option value="€">EUR (€)</option>
+          <option value="£">GBP (£)</option>
+          <option value="₹">INR (₹)</option>
+          <option value="¥">JPY (¥)</option>
+          <option value="A$">AUD (A$)</option>
+          <option value="C$">CAD (C$)</option>
+        </select>
       </div>
       <a href="${homePath}" class="block text-sm font-medium text-slate-300 hover:text-emerald-400 transition-colors py-1">Home</a>
       <div class="space-y-1">
@@ -519,11 +551,12 @@ function generateCalculatorPages() {
     });
 
     const inputsHtml = c.inputs.map(input => {
+      const labelText = input.label.includes('($)') ? input.label.replace('($)', '(<span class="nexus-currency-symbol">$</span>)') : input.label;
       if (input.type === 'select') {
         const opts = input.options.map(o => `<option value="${o.value}">${o.label}</option>`).join('');
         return `
           <div class="mb-4">
-            <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2" for="${input.id}">${input.label}</label>
+            <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2" for="${input.id}">${labelText}</label>
             <select id="${input.id}" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-emerald-500 transition-colors">
               ${opts}
             </select>
@@ -533,7 +566,7 @@ function generateCalculatorPages() {
       return `
         <div class="mb-6">
           <div class="flex items-center justify-between mb-3">
-            <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider" for="${input.id}">${input.label}</label>
+            <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider" for="${input.id}">${labelText}</label>
             <input type="number" id="${input.id}-val" value="${input.default}" min="${input.min}" max="${input.max}" step="${input.step || 1}" class="w-28 bg-slate-900/90 border border-slate-700 rounded-lg text-right px-3 py-1 text-sm text-emerald-400 font-mono font-semibold focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/25 transition-all">
           </div>
           <input type="range" id="${input.id}" min="${input.min}" max="${input.max}" step="${input.step || 1}" value="${input.default}" class="w-full h-1.5 bg-slate-950 rounded-lg appearance-none cursor-pointer focus:outline-none">
@@ -541,14 +574,17 @@ function generateCalculatorPages() {
       `;
     }).join('');
 
-    const outputsHtml = c.outputs.map(out => `
-      <div class="p-4 rounded-lg bg-slate-900/60 border border-slate-800 flex items-center justify-between">
-        <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">${out.label}</span>
-        <span class="text-base sm:text-lg font-bold text-white font-mono" id="out-${out.id}">
-          ${out.prefix || ''}0${out.suffix || ''}
-        </span>
-      </div>
-    `).join('');
+    const outputsHtml = c.outputs.map(out => {
+      const displayPrefix = out.prefix === '$' ? `<span class="nexus-currency-symbol">$</span>` : (out.prefix || '');
+      return `
+        <div class="p-4 rounded-lg bg-slate-900/60 border border-slate-800 flex items-center justify-between">
+          <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">${out.label}</span>
+          <span class="text-base sm:text-lg font-bold text-white font-mono" id="out-${out.id}">
+            ${displayPrefix}0${out.suffix || ''}
+          </span>
+        </div>
+      `;
+    }).join('');
 
     const faqAccordionHtml = c.faqs.map((f, index) => `
       <div class="p-5 rounded-lg bg-slate-800 border border-slate-700">
@@ -606,7 +642,8 @@ function generateCalculatorPages() {
           if (isNaN(val) || !isFinite(val)) {
             val = 0;
           }
-          el_out_${out.id}.textContent = '${out.prefix || ''}' + val.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + '${out.suffix || ''}';
+          const prefixVal = '${out.prefix || ''}' === '$' ? (window.getNexusCurrencySymbol ? window.getNexusCurrencySymbol('$') : '$') : '${out.prefix || ''}';
+          el_out_${out.id}.textContent = prefixVal + val.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + '${out.suffix || ''}';
         } else {
           el_out_${out.id}.textContent = val;
         }
@@ -734,6 +771,7 @@ function generateCalculatorPages() {
           }
 
           ${calcScriptListeners}
+          window.runCalculation = runCalculation;
           runCalculation();
         });
       </script>
