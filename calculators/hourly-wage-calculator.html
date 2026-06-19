@@ -132,28 +132,28 @@
             <h2 class="text-base font-bold text-white border-b border-slate-700 pb-3 mb-5">Configuration</h2>
             <form onsubmit="event.preventDefault();" class="space-y-4">
               
-        <div class="mb-5">
-          <div class="flex items-center justify-between mb-2">
+        <div class="mb-6">
+          <div class="flex items-center justify-between mb-3">
             <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider" for="rate">Hourly Pay Rate ($)</label>
-            <input type="number" id="rate-val" value="25" min="1" max="500" step="0.5" class="w-24 bg-slate-900 border border-slate-700 rounded text-right px-2 py-0.5 text-xs text-emerald-400 font-mono focus:outline-none focus:border-emerald-500">
+            <input type="number" id="rate-val" value="25" min="1" max="500" step="0.5" class="w-28 bg-slate-900/90 border border-slate-700 rounded-lg text-right px-3 py-1 text-sm text-emerald-400 font-mono font-semibold focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/25 transition-all">
           </div>
-          <input type="range" id="rate" min="1" max="500" step="0.5" value="25" class="w-full h-1.5 bg-slate-900 rounded-lg appearance-none cursor-pointer accent-emerald-500">
+          <input type="range" id="rate" min="1" max="500" step="0.5" value="25" class="w-full h-1.5 bg-slate-950 rounded-lg appearance-none cursor-pointer focus:outline-none">
         </div>
       
-        <div class="mb-5">
-          <div class="flex items-center justify-between mb-2">
+        <div class="mb-6">
+          <div class="flex items-center justify-between mb-3">
             <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider" for="hours">Average Work Hours / Week</label>
-            <input type="number" id="hours-val" value="40" min="1" max="100" step="1" class="w-24 bg-slate-900 border border-slate-700 rounded text-right px-2 py-0.5 text-xs text-emerald-400 font-mono focus:outline-none focus:border-emerald-500">
+            <input type="number" id="hours-val" value="40" min="1" max="100" step="1" class="w-28 bg-slate-900/90 border border-slate-700 rounded-lg text-right px-3 py-1 text-sm text-emerald-400 font-mono font-semibold focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/25 transition-all">
           </div>
-          <input type="range" id="hours" min="1" max="100" step="1" value="40" class="w-full h-1.5 bg-slate-900 rounded-lg appearance-none cursor-pointer accent-emerald-500">
+          <input type="range" id="hours" min="1" max="100" step="1" value="40" class="w-full h-1.5 bg-slate-950 rounded-lg appearance-none cursor-pointer focus:outline-none">
         </div>
       
-        <div class="mb-5">
-          <div class="flex items-center justify-between mb-2">
+        <div class="mb-6">
+          <div class="flex items-center justify-between mb-3">
             <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider" for="weeks">Work Weeks / Year</label>
-            <input type="number" id="weeks-val" value="52" min="10" max="52" step="1" class="w-24 bg-slate-900 border border-slate-700 rounded text-right px-2 py-0.5 text-xs text-emerald-400 font-mono focus:outline-none focus:border-emerald-500">
+            <input type="number" id="weeks-val" value="52" min="10" max="52" step="1" class="w-28 bg-slate-900/90 border border-slate-700 rounded-lg text-right px-3 py-1 text-sm text-emerald-400 font-mono font-semibold focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/25 transition-all">
           </div>
-          <input type="range" id="weeks" min="10" max="52" step="1" value="52" class="w-full h-1.5 bg-slate-900 rounded-lg appearance-none cursor-pointer accent-emerald-500">
+          <input type="range" id="weeks" min="10" max="52" step="1" value="52" class="w-full h-1.5 bg-slate-950 rounded-lg appearance-none cursor-pointer focus:outline-none">
         </div>
       
             </form>

@@ -522,12 +522,12 @@ function generateCalculatorPages() {
         `;
       }
       return `
-        <div class="mb-5">
-          <div class="flex items-center justify-between mb-2">
+        <div class="mb-6">
+          <div class="flex items-center justify-between mb-3">
             <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider" for="${input.id}">${input.label}</label>
-            <input type="number" id="${input.id}-val" value="${input.default}" min="${input.min}" max="${input.max}" step="${input.step || 1}" class="w-24 bg-slate-900 border border-slate-700 rounded text-right px-2 py-0.5 text-xs text-emerald-400 font-mono focus:outline-none focus:border-emerald-500">
+            <input type="number" id="${input.id}-val" value="${input.default}" min="${input.min}" max="${input.max}" step="${input.step || 1}" class="w-28 bg-slate-900/90 border border-slate-700 rounded-lg text-right px-3 py-1 text-sm text-emerald-400 font-mono font-semibold focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/25 transition-all">
           </div>
-          <input type="range" id="${input.id}" min="${input.min}" max="${input.max}" step="${input.step || 1}" value="${input.default}" class="w-full h-1.5 bg-slate-900 rounded-lg appearance-none cursor-pointer accent-emerald-500">
+          <input type="range" id="${input.id}" min="${input.min}" max="${input.max}" step="${input.step || 1}" value="${input.default}" class="w-full h-1.5 bg-slate-950 rounded-lg appearance-none cursor-pointer focus:outline-none">
         </div>
       `;
     }).join('');
